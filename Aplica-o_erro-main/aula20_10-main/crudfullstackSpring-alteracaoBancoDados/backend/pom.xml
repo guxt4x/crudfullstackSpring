@@ -34,12 +34,15 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+<<<<<<< HEAD:Aplica-o_erro-main/aula20_10-main/crudfullstackSpring-alteracaoBancoDados/backend/pom.xml
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
 
+=======
+>>>>>>> 1bca434 (Alteração do Banco de Dados):backend/pom.xml
         <!-- REMOVER ESSE CÓDIGO 
         <dependency>
             <groupId>org.springframework.boot</groupId>
