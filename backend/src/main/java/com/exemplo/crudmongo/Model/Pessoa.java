@@ -1,37 +1,23 @@
 package com.exemplo.crudmongo.Model;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;  
 
+import org.springframework.stereotype.Component;
 
-@Document(collection = "pessoa") // Indica que esta classe é um documento MongoDB na coleção "pessoa"
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Component
+@Entity
 public class Pessoa {
 
     @Id // Indica que este campo é o identificador único do documento
-    private String id ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private int idade;
-
-    // Getter para o campo id
-    public String getId() {
-        return id;
-    }
-
-    // Setter para o campo id
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-    
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }

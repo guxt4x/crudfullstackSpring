@@ -35,10 +35,11 @@ public class PessoaController {
     /**
      * Cria uma nova pessoa.
      * Método acessível via POST em /pessoas
+     * 
      * @param pessoa Objeto Pessoa recebido no corpo da requisição
      * @return Pessoa criada
      */
-    @PostMapping
+    @PostMapping("/criar")
     public Pessoa criar(@RequestBody Pessoa pessoa) {
         return service.salvar(pessoa);
     }
@@ -46,23 +47,25 @@ public class PessoaController {
     /**
      * Atualiza uma pessoa existente pelo ID.
      * Método acessível via PUT em /pessoas/{id}
-     * @param id Identificador da pessoa a ser atualizada
+     * 
+     * @param id     Identificador da pessoa a ser atualizada
      * @param pessoa Dados atualizados da pessoa
      * @return Pessoa atualizada
      */
     @PutMapping("/{id}")
-    public Pessoa atualizar(@PathVariable String id, 
-    @RequestBody Pessoa pessoa) {
+    public Pessoa atualizar(@PathVariable Long id,
+            @RequestBody Pessoa pessoa) {
         return service.atualizar(id, pessoa);
     }
 
     /**
      * Exclui uma pessoa pelo ID.
      * Método acessível via DELETE em /pessoas/{id}
+     * 
      * @param id Identificador da pessoa a ser excluída
      */
     @DeleteMapping("/{id}")
-    public void excluir(@PathVariable String id) {
+    public void excluir(@PathVariable Long id) {
         service.excluir(id);
     }
 }

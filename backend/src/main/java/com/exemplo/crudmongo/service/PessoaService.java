@@ -3,7 +3,10 @@ package com.exemplo.crudmongo.service;
 import com.exemplo.crudmongo.Model.Pessoa;
 import com.exemplo.crudmongo.repository.PessoaRepository;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -14,7 +17,7 @@ import java.util.List;
 public class PessoaService {
 
     private final PessoaRepository repository; // Repositório para acesso ao banco de dados
-    
+
     /**
      * Injeta o repositório PessoaRepository via construtor.
      */
@@ -22,9 +25,9 @@ public class PessoaService {
         this.repository = repository;
     }
 
-
     /**
      * Retorna todas as pessoas cadastradas no banco de dados.
+     * 
      * @return Lista de pessoas
      */
     public List<Pessoa> listarTodas() {
@@ -33,6 +36,7 @@ public class PessoaService {
 
     /**
      * Salva uma nova pessoa no banco de dados.
+     * 
      * @param pessoa Objeto Pessoa a ser salvo
      * @return Pessoa salva
      */
@@ -42,22 +46,27 @@ public class PessoaService {
 
     /**
      * Atualiza uma pessoa existente pelo ID.
-     * @param id Identificador da pessoa a ser atualizada
+     * 
+     * @param id         Identificador da pessoa a ser atualizada
      * @param novaPessoa Dados atualizados da pessoa
      * @return Pessoa atualizada
      */
-    public Pessoa atualizar(String id, Pessoa novaPessoa) {
-        Pessoa pessoa = repository.findById(id).orElseThrow(); // Busca a pessoa pelo ID ou lança exceção se não encontrar
-        pessoa.setNome(novaPessoa.getNome()); // Atualiza o nome
-        pessoa.setIdade(novaPessoa.getIdade()); // Atualiza a idade
-        return repository.save(pessoa); // Salva as alterações
+    public Pessoa atualizar(@PathVariable Long id, @RequestBody Pessoa novaPessoa) {
+        return repository.findById(id).map(pessoa -> {
+            pessoa.setNome(novaPessoa.getNome()); // Atualiza o nome
+            pessoa.setIdade(novaPessoa.getIdade()); // Atualiza a idade
+            return repository.save(pessoa); // Salva as alterações
+        }).orElseThrow(() -> new RuntimeException("Pessoa não encontrada")); // Busca a pessoa pelo ID ou lança exceção
+                                                                             // se não
+                                                                             // encontrar
     }
 
     /**
      * Exclui uma pessoa pelo ID.
+     * 
      * @param id Identificador da pessoa a ser excluída
      */
-    public void excluir(String id) {
+    public void excluir(Long id) {
         repository.deleteById(id);
     }
 }
