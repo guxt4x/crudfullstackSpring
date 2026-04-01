@@ -43,7 +43,10 @@ Você está desenvolvendo uma aplicação de cadastro acadêmico utilizando Java
 
 ---
 
+
 ### Diagrama das Entidades
+
+> **Atenção:** O diagrama abaixo utiliza sintaxe Mermaid. O GitHub pode não renderizar automaticamente para todos os usuários ou tipos de diagrama. Caso não visualize o diagrama, copie o bloco abaixo e cole no [Mermaid Live Editor](https://mermaid.live/) para visualização gráfica.
 
 ```mermaid
   erDiagram
