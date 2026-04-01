@@ -26,29 +26,13 @@
     <properties>
         <java.version>17</java.version>
     </properties>
-
     <dependencies>
         <!-- Dependência para aplicações web com Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-<<<<<<< HEAD
-<<<<<<< HEAD:Aplica-o_erro-main/aula20_10-main/crudfullstackSpring-alteracaoBancoDados/backend/pom.xml
-=======
->>>>>>> e517c4212c3367b8f37b9791cb0ac5b6d1574752
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-
-<<<<<<< HEAD
-=======
->>>>>>> 1bca434 (Alteração do Banco de Dados):backend/pom.xml
-=======
->>>>>>> e517c4212c3367b8f37b9791cb0ac5b6d1574752
+        
         <!-- REMOVER ESSE CÓDIGO 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -97,7 +81,7 @@
             <version>2.5.0</version>
         </dependency>
     </dependencies>
-    
+ 
     <build>
         <plugins>
             <!-- Plugin para empacotar e executar aplicações Spring Boot -->
