@@ -134,10 +134,4 @@ erDiagram
 
 		---
 
-		## Próximas Atividades
-
-		### Atividade 2: Pesquisa e Paginação
-		*Em breve: implemente endpoints de pesquisa e paginação para as entidades criadas, seguindo o padrão do Spring Data JPA.*
-
-		### Atividade 3: Relacionamentos e Validações
-		*Em breve: implemente relacionamentos entre entidades (ex: matrícula, avaliação) e regras de validação de dados.*
+		
