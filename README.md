@@ -86,3 +86,15 @@ Você está desenvolvendo uma aplicação de cadastro acadêmico utilizando Java
     DISCIPLINA ||--o{ AVALIACAO : compoe
     TURMA ||--o{ PESSOA : agrupa
     PROFESSOR ||--o{ DISCIPLINA : ministra
+    
+        CURSO {
+            Long id
+            String nome
+            boolean ativo
+        }
+        PROFESSOR {
+            Long id
+            String nome
+            String area
+            boolean ativo
+        }
