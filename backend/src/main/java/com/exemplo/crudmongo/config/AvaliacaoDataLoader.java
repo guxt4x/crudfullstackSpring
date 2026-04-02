@@ -19,7 +19,7 @@ public class AvaliacaoDataLoader {
                 a.setPessoaId(faker.number().randomNumber());
                 a.setDisciplinaId(faker.number().randomNumber());
                 a.setNota(faker.number().randomDouble(1, 0, 10));
-                a.setData(LocalDate.now().minusDays(faker.number().numberBetween(1, 365)));
+                a.setData(LocalDate.now().minusDays(faker.number().numberBetween(1, 365)).toString());
                 a.setAtivo(faker.bool().bool());
                 repository.save(a);
             }

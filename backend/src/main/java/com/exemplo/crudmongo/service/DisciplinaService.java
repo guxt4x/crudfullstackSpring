@@ -1,6 +1,7 @@
 package com.exemplo.crudmongo.service;
 
 import java.util.List;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import com.exemplo.crudmongo.Model.Disciplina;
 import com.exemplo.crudmongo.repository.DisciplinaRepository;
@@ -10,8 +11,8 @@ public class DisciplinaService {
     private final DisciplinaRepository repository;
     public DisciplinaService(DisciplinaRepository repository) { this.repository = repository; }
     public List<Disciplina> listarTodas() { return repository.findAll(); }
-    public Disciplina salvar(Disciplina disciplina) { return repository.save(disciplina); }
-    public Disciplina atualizar(Long id, Disciplina novaDisciplina) {
+    public Disciplina salvar(@NonNull Disciplina disciplina) { return repository.save(disciplina); }
+    public Disciplina atualizar(@NonNull Long id, @NonNull Disciplina novaDisciplina) {
         return repository.findById(id).map(d -> {
             d.setNome(novaDisciplina.getNome());
             d.setCargaHoraria(novaDisciplina.getCargaHoraria());
@@ -19,5 +20,5 @@ public class DisciplinaService {
             return repository.save(d);
         }).orElseThrow(() -> new RuntimeException("Disciplina não encontrada"));
     }
-    public void excluir(Long id) { repository.deleteById(id); }
+    public void excluir(@NonNull Long id) { repository.deleteById(id); }
 }

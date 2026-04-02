@@ -18,7 +18,7 @@ public class MatriculaDataLoader {
                 Matricula m = new Matricula();
                 m.setPessoaId(faker.number().randomNumber());
                 m.setCursoId(faker.number().randomNumber());
-                m.setDataMatricula(LocalDate.now().minusDays(faker.number().numberBetween(1, 1000)));
+                m.setDataMatricula(LocalDate.now().minusDays(faker.number().numberBetween(1, 1000)).toString());
                 m.setAtivo(faker.bool().bool());
                 repository.save(m);
             }
