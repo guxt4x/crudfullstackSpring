@@ -7,20 +7,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "pessoas")
-public class Pessoa {
-
+@Table(name = "professor")
+public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private int idade;
     private String email;
     private boolean ativo;
 
-    public Pessoa() {
-    }
+    public Professor() {}
 
     public Long getId() {
         return id;
@@ -67,18 +64,23 @@ package com.exemplo.crudmongo.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "pessoa")
-public class Pessoa {
+@Table(name = "professor")
+public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private int ano;
-    public Pessoa() {}
+    private String area;
+    private boolean ativo;
+
+    public Professor() {}
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
-    public int getAno() { return ano; }
-    public void setAno(int ano) { this.ano = ano; }
+    public String getArea() { return area; }
+    public void setArea(String area) { this.area = area; }
+    public boolean isAtivo() { return ativo; }
+    public void setAtivo(boolean ativo) { this.ativo = ativo; }
 }
