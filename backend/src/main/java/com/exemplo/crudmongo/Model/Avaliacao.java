@@ -16,6 +16,15 @@ public class Avaliacao {
 
     public Avaliacao() {}
 
+    public Avaliacao(Long id, Long pessoaId, Long disciplinaId, double nota, String data, boolean ativo) {
+        this.id = id;
+        this.pessoaId = pessoaId;
+        this.disciplinaId = disciplinaId;
+        this.nota = nota;
+        this.data = data;
+        this.ativo = ativo;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public Long getPessoaId() { return pessoaId; }

@@ -78,10 +78,15 @@ sequenceDiagram
 ## Diagrama de Caso de Uso
 
 ```mermaid
-usecaseDiagram
-    actor "Usuário" as User
-    User -- (Listar Cursos)
-    User -- (Criar Curso)
-    User -- (Atualizar Curso)
-    User -- (Excluir Curso)
+flowchart LR
+    User([Usuário])
+    UC1([Listar Cursos])
+    UC2([Criar Curso])
+    UC3([Atualizar Curso])
+    UC4([Excluir Curso])
+
+    User --- UC1
+    User --- UC2
+    User --- UC3
+    User --- UC4
 ```

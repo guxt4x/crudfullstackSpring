@@ -15,9 +15,17 @@ public class Professor {
     private String nome;
     private int idade;
     private String email;
+    private String area;
     private boolean ativo;
 
     public Professor() {}
+
+    public Professor(Long id, String nome, String area, boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.area = area;
+        this.ativo = ativo;
+    }
 
     public Long getId() {
         return id;
@@ -51,6 +59,9 @@ public class Professor {
         this.email = email;
     }
 
+    public String getArea() { return area; }
+    public void setArea(String area) { this.area = area; }
+
     public boolean isAtivo() {
         return ativo;
     }
@@ -58,29 +69,4 @@ public class Professor {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-}
-package com.exemplo.crudmongo.Model;
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "professor")
-public class Professor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
-    private String area;
-    private boolean ativo;
-
-    public Professor() {}
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-    public String getArea() { return area; }
-    public void setArea(String area) { this.area = area; }
-    public boolean isAtivo() { return ativo; }
-    public void setAtivo(boolean ativo) { this.ativo = ativo; }
 }

@@ -15,6 +15,14 @@ public class Matricula {
 
     public Matricula() {}
 
+    public Matricula(Long id, Long pessoaId, Long cursoId, String dataMatricula, boolean ativo) {
+        this.id = id;
+        this.pessoaId = pessoaId;
+        this.cursoId = cursoId;
+        this.dataMatricula = dataMatricula;
+        this.ativo = ativo;
+    }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public Long getPessoaId() { return pessoaId; }
