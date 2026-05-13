@@ -12,21 +12,32 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
     private final SecretKey key = Keys.hmacShaKeyFor(
-        "minha-chave-secreta-super-segura-32bytes!!".getBytes()
-    );
+            "minha-chave-secreta-super-segura-32bytes!!".getBytes());
     private final long EXPIRATION = 1000 * 60 * 60; // 1 hora
 
     public String generateToken(String username) {
-        return Jwts.builder()
+        return generateTokenWithRole(username, null);
+    }
+
+    public String generateTokenWithRole(String username, String role) {
+        var builder = Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION))
-                .signWith(key)
-                .compact();
+                .expiration(new Date(System.currentTimeMillis() + EXPIRATION));
+
+        if (role != null) {
+            builder.claim("role", role); // ← Adiciona role ao token
+        }
+
+        return builder.signWith(key).compact();
     }
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
     }
 
     public Date extractExpiration(String token) {

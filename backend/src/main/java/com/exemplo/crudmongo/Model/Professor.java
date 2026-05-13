@@ -1,5 +1,6 @@
 package com.exemplo.crudmongo.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,13 +13,16 @@ public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
+    private Long usuarioId;
     private String nome;
     private int idade;
     private String email;
     private String area;
     private boolean ativo;
 
-    public Professor() {}
+    public Professor() {
+    }
 
     public Professor(Long id, String nome, String area, boolean ativo) {
         this.id = id;
@@ -33,6 +37,14 @@ public class Professor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getNome() {
@@ -59,8 +71,13 @@ public class Professor {
         this.email = email;
     }
 
-    public String getArea() { return area; }
-    public void setArea(String area) { this.area = area; }
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
 
     public boolean isAtivo() {
         return ativo;
