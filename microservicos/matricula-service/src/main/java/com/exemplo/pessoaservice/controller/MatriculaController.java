@@ -1,7 +1,7 @@
-package com.exemplo.matriculaservice.controller;
+package com.exemplo.pessoaservice.controller;
 
-import com.exemplo.matriculaservice.model.Matricula;
-import com.exemplo.matriculaservice.service.MatriculaService;
+import com.exemplo.pessoaservice.model.Matricula;
+import com.exemplo.pessoaservice.service.MatriculaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controller REST do microserviço de Matrículas.
+ * Controller REST do microserviï¿½o de Matrï¿½culas.
  *
  * Base URL: http://localhost:8081/api/matriculas
  *
- * Endpoints disponíveis:
+ * Endpoints disponï¿½veis:
  *   GET    /api/matriculas              ? lista todas
  *   GET    /api/matriculas/{id}         ? busca por ID
  *   GET    /api/matriculas/pessoa/{id}  ? lista por pessoa

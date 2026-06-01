@@ -1,14 +1,14 @@
-package com.exemplo.matriculaservice.config;
+package com.exemplo.pessoaservice.config;
 
-import com.exemplo.matriculaservice.model.Matricula;
-import com.exemplo.matriculaservice.repository.MatriculaRepository;
+import com.exemplo.pessoaservice.model.Matricula;
+import com.exemplo.pessoaservice.repository.MatriculaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Carrega dados iniciais no banco H2 ao subir o microserviço.
- * Útil para testes e demonstrações.
+ * Carrega dados iniciais no banco H2 ao subir o microserviï¿½o.
+ * ï¿½til para testes e demonstraï¿½ï¿½es.
  */
 @Configuration
 public class MatriculaDataLoader {

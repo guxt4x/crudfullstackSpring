@@ -6,19 +6,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- =====================================================
-         MICROSERVIÇO: matricula-service
-         Responsabilidade única: gerenciar matrículas
+         MICROSERVIÇO: turma-service
+         Responsabilidade única: gerenciar turmas
          Porta: 8084
-         Banco: H2 em memória (matriculadb)
+         Banco: H2 em memória (turmadb)
          ===================================================== -->
 
     <groupId>com.exemplo</groupId>
-    <artifactId>matricula-service</artifactId>
+    <artifactId>turma-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>matricula-service</name>
-    <description>Microserviço responsável pelo gerenciamento de matrículas</description>
+    <name>turma-service</name>
+    <description>Microserviço responsável pelo gerenciamento de turmas</description>
 
     <!-- Define o projeto pai como Spring Boot Starter Parent -->
     <parent>

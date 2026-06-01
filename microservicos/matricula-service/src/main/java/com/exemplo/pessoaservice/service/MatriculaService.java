@@ -1,15 +1,15 @@
-package com.exemplo.matriculaservice.service;
+package com.exemplo.pessoaservice.service;
 
-import com.exemplo.matriculaservice.model.Matricula;
-import com.exemplo.matriculaservice.repository.MatriculaRepository;
+import com.exemplo.pessoaservice.model.Matricula;
+import com.exemplo.pessoaservice.repository.MatriculaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Camada de negócio do microserviço de Matrículas.
- * Toda a lógica de negócio fica aqui ? o controller só delega.
+ * Camada de negï¿½cio do microserviï¿½o de Matrï¿½culas.
+ * Toda a lï¿½gica de negï¿½cio fica aqui ? o controller sï¿½ delega.
  */
 @Service
 public class MatriculaService {
@@ -20,35 +20,35 @@ public class MatriculaService {
         this.repository = repository;
     }
 
-    /** Lista todas as matrículas */
+    /** Lista todas as matrï¿½culas */
     public List<Matricula> listarTodas() {
         return repository.findAll();
     }
 
-    /** Busca uma matrícula pelo ID */
+    /** Busca uma matrï¿½cula pelo ID */
     public Optional<Matricula> buscarPorId(Long id) {
         return repository.findById(id);
     }
 
-    /** Lista matrículas de uma pessoa específica */
+    /** Lista matrï¿½culas de uma pessoa especï¿½fica */
     public List<Matricula> listarPorPessoa(Long pessoaId) {
         return repository.findByPessoaId(pessoaId);
     }
 
-    /** Lista matrículas de um curso específico */
+    /** Lista matrï¿½culas de um curso especï¿½fico */
     public List<Matricula> listarPorCurso(Long cursoId) {
         return repository.findByCursoId(cursoId);
     }
 
-    /** Cria uma nova matrícula */
+    /** Cria uma nova matrï¿½cula */
     public Matricula salvar(Matricula matricula) {
         return repository.save(matricula);
     }
 
-    /** Atualiza uma matrícula existente */
+    /** Atualiza uma matrï¿½cula existente */
     public Matricula atualizar(Long id, Matricula dados) {
         Matricula existente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Matrícula não encontrada: " + id));
+                .orElseThrow(() -> new RuntimeException("Matrï¿½cula nï¿½o encontrada: " + id));
         existente.setPessoaId(dados.getPessoaId());
         existente.setCursoId(dados.getCursoId());
         existente.setDataMatricula(dados.getDataMatricula());
@@ -56,15 +56,15 @@ public class MatriculaService {
         return repository.save(existente);
     }
 
-    /** Desativa uma matrícula (soft delete) */
+    /** Desativa uma matrï¿½cula (soft delete) */
     public void desativar(Long id) {
         Matricula existente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Matrícula não encontrada: " + id));
+                .orElseThrow(() -> new RuntimeException("Matrï¿½cula nï¿½o encontrada: " + id));
         existente.setAtivo(false);
         repository.save(existente);
     }
 
-    /** Remove permanentemente uma matrícula */
+    /** Remove permanentemente uma matrï¿½cula */
     public void excluir(Long id) {
         repository.deleteById(id);
     }
