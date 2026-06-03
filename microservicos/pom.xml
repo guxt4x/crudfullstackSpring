@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.exemplo</groupId>
+    <artifactId>microservicos</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>microservicos</name>
+
+    <modules>
+        <module>matricula-service</module>
+        <module>pessoa-service</module>
+        <module>usuario-service</module>
+        <module>disciplina-service</module>
+        <module>turma-service</module>
+        <module>curso-service</module>
+    </modules>
+
+</project>

@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Pessoa Service - Porta 8082
+  pessoa-service:
+    build:
+      context: ./pessoa-service
+    container_name: pessoa-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SERVER_PORT=8082
+    networks:
+      - microservices-network
+
+  # Matricula Service - Porta 8081
+  matricula-service:
+    build:
+      context: ./matricula-service
+    container_name: matricula-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - pessoa-service
+    environment:
+      - SERVER_PORT=8081
+      - PESSOA_SERVICE_URL=http://pessoa-service:8082
+    networks:
+      - microservices-network
+
+  # Disciplina Service - Porta 8083
+  disciplina-service:
+    build:
+      context: ./disciplina-service
+    container_name: disciplina-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SERVER_PORT=8083
+    networks:
+      - microservices-network
+
+  # Curso Service - Porta 8084
+  curso-service:
+    build:
+      context: ./curso-service
+    container_name: curso-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - disciplina-service
+    environment:
+      - SERVER_PORT=8084
+      - DISCIPLINA_SERVICE_URL=http://disciplina-service:8083
+    networks:
+      - microservices-network
+
+  # Turma Service - Porta 8085
+  turma-service:
+    build:
+      context: ./turma-service
+    container_name: turma-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - pessoa-service
+      - curso-service
+    environment:
+      - SERVER_PORT=8085
+      - PESSOA_SERVICE_URL=http://pessoa-service:8082
+      - CURSO_SERVICE_URL=http://curso-service:8084
+    networks:
+      - microservices-network
+
+  # Usuario Service - Porta 8086
+  usuario-service:
+    build:
+      context: ./usuario-service
+    container_name: usuario-service
+    ports:
+      - "8086:8086"
+    environment:
+      - SERVER_PORT=8086
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
