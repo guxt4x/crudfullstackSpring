@@ -8,6 +8,11 @@
 /**/build/
 /**/dist/
 
+# READMEs
+GUIA_MICROSERVICOS.md
+LIMPEZA_CONCLUIDA.md
+CHECKLIST_CONFIGURACAO.md
+
 # IDEs / sistema
 .vscode/
 .idea/
@@ -85,3 +90,4 @@ ci-artifacts/
 # Se quiser versionar um exemplo de configuração, mantenha um arquivo de exemplo:
 # application.properties.example
 backend/src/main/java/com/exemplo/crudmongo/index.html
+

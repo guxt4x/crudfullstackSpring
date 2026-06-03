@@ -1,18 +1,90 @@
+version: '3.8'
+
 services:
-  # Backend - Spring Boot
-  app:
+  # Pessoa Service - Porta 8082
+  pessoa-service:
     build:
-      context: ./backend
-    container_name: crud-springboot
+      context: ./microservicos/pessoa-service
+    container_name: pessoa-service
     ports:
-      - "8080:8080"
+      - "8082:8082"
     environment:
-      - SPRING_DATA_MONGODB_URI=mongodb+srv://usuariodobanco:senha@cluster0.datgvgs.mongodb.net/nomedobanco?retryWrites=true&w=majority
-
+      - SERVER_PORT=8082
     networks:
-      - app-network
+      - microservices-network
 
-  # Frontend - Angular com Nginx configurado para redirecionar /api para o backend
+  # Matricula Service - Porta 8081
+  matricula-service:
+    build:
+      context: ./microservicos/matricula-service
+    container_name: matricula-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - pessoa-service
+    environment:
+      - SERVER_PORT=8081
+      - PESSOA_SERVICE_URL=http://pessoa-service:8082
+    networks:
+      - microservices-network
+
+  # Disciplina Service - Porta 8083
+  disciplina-service:
+    build:
+      context: ./microservicos/disciplina-service
+    container_name: disciplina-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SERVER_PORT=8083
+    networks:
+      - microservices-network
+
+  # Curso Service - Porta 8084
+  curso-service:
+    build:
+      context: ./microservicos/curso-service
+    container_name: curso-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - disciplina-service
+    environment:
+      - SERVER_PORT=8084
+      - DISCIPLINA_SERVICE_URL=http://disciplina-service:8083
+    networks:
+      - microservices-network
+
+  # Turma Service - Porta 8085
+  turma-service:
+    build:
+      context: ./microservicos/turma-service
+    container_name: turma-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - pessoa-service
+      - curso-service
+    environment:
+      - SERVER_PORT=8085
+      - PESSOA_SERVICE_URL=http://pessoa-service:8082
+      - CURSO_SERVICE_URL=http://curso-service:8084
+    networks:
+      - microservices-network
+
+  # Usuario Service - Porta 8086
+  usuario-service:
+    build:
+      context: ./microservicos/usuario-service
+    container_name: usuario-service
+    ports:
+      - "8086:8086"
+    environment:
+      - SERVER_PORT=8086
+    networks:
+      - microservices-network
+
+  # Frontend - Angular com Nginx
   frontend:
     build:
       context: ./frontend
@@ -20,10 +92,15 @@ services:
     ports:
       - "4200:80"
     depends_on:
-      - app
+      - pessoa-service
+      - matricula-service
+      - disciplina-service
+      - curso-service
+      - turma-service
+      - usuario-service
     networks:
-      - app-network
+      - microservices-network
 
 networks:
-  app-network:
+  microservices-network:
     driver: bridge
