@@ -3,7 +3,7 @@ services:
   # Backend monolito original
   app:
     build:
-      context: ./backend
+      context: ./microservicos
     container_name: crud-springboot
     ports:
       - "8080:8080"
