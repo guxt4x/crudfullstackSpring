@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <!-- =====================================================
-         MICROSERVIÇO: usuario-service
-         Responsabilidade única: gerenciar usuários
-         Porta: 8083
-         Banco: H2 em memória (usuariodb)
+         MICROSERVIÇO: professor-service
+         Responsabilidade única: gerenciar professores
+         Porta: 8082
+         Banco: H2 em memória (professordb)
          ===================================================== -->
 
     <groupId>com.exemplo</groupId>
-    <artifactId>usuario-service</artifactId>
+    <artifactId>professor-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>usuario-service</name>
-    <description>Microserviço responsável pelo gerenciamento de usuários</description>
+    <name>professor-service</name>
+    <description>Microserviço responsável pelo gerenciamento de professores</description>
 
-    <!-- Define o projeto pai como Spring Boot Starter Parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
-        <relativePath /> <!-- Busca o parent no repositório -->
+        <relativePath />
     </parent>
 
-    <!-- Define a versão do Java utilizada no projeto -->
     <properties>
         <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
@@ -64,7 +64,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- REMOVER ESSE CÓDIGO 
+        <!-- REMOVER ESSE CÓDIGO
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -122,4 +122,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

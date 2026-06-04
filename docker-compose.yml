@@ -1,90 +1,18 @@
-version: '3.8'
-
 services:
-  # Pessoa Service - Porta 8082
-  pessoa-service:
-    build:
-      context: ./microservicos/pessoa-service
-    container_name: pessoa-service
-    ports:
-      - "8082:8082"
-    environment:
-      - SERVER_PORT=8082
-    networks:
-      - microservices-network
 
-  # Matricula Service - Porta 8081
-  matricula-service:
+  # Backend monolito original
+  app:
     build:
-      context: ./microservicos/matricula-service
-    container_name: matricula-service
+      context: ./backend
+    container_name: crud-springboot
     ports:
-      - "8081:8081"
-    depends_on:
-      - pessoa-service
+      - "8080:8080"
     environment:
-      - SERVER_PORT=8081
-      - PESSOA_SERVICE_URL=http://pessoa-service:8082
+      - SPRING_DATA_MONGODB_URI=mongodb+srv://usuariodobanco:senha@cluster0.datgvgs.mongodb.net/nomedobanco?retryWrites=true&w=majority
     networks:
-      - microservices-network
+      - app-network
 
-  # Disciplina Service - Porta 8083
-  disciplina-service:
-    build:
-      context: ./microservicos/disciplina-service
-    container_name: disciplina-service
-    ports:
-      - "8083:8083"
-    environment:
-      - SERVER_PORT=8083
-    networks:
-      - microservices-network
-
-  # Curso Service - Porta 8084
-  curso-service:
-    build:
-      context: ./microservicos/curso-service
-    container_name: curso-service
-    ports:
-      - "8084:8084"
-    depends_on:
-      - disciplina-service
-    environment:
-      - SERVER_PORT=8084
-      - DISCIPLINA_SERVICE_URL=http://disciplina-service:8083
-    networks:
-      - microservices-network
-
-  # Turma Service - Porta 8085
-  turma-service:
-    build:
-      context: ./microservicos/turma-service
-    container_name: turma-service
-    ports:
-      - "8085:8085"
-    depends_on:
-      - pessoa-service
-      - curso-service
-    environment:
-      - SERVER_PORT=8085
-      - PESSOA_SERVICE_URL=http://pessoa-service:8082
-      - CURSO_SERVICE_URL=http://curso-service:8084
-    networks:
-      - microservices-network
-
-  # Usuario Service - Porta 8086
-  usuario-service:
-    build:
-      context: ./microservicos/usuario-service
-    container_name: usuario-service
-    ports:
-      - "8086:8086"
-    environment:
-      - SERVER_PORT=8086
-    networks:
-      - microservices-network
-
-  # Frontend - Angular com Nginx
+  # Frontend Angular
   frontend:
     build:
       context: ./frontend
@@ -92,15 +20,79 @@ services:
     ports:
       - "4200:80"
     depends_on:
-      - pessoa-service
-      - matricula-service
-      - disciplina-service
-      - curso-service
-      - turma-service
-      - usuario-service
+      - app
     networks:
-      - microservices-network
+      - app-network
+
+  # Microserviço de Pessoas (8082)
+  pessoa-service:
+    build:
+      context: ./microservicos/pessoa-service
+    container_name: pessoa-service
+    ports:
+      - "8082:8082"
+    networks:
+      - app-network
+
+  # Microserviço de Cursos (8083)
+  curso-service:
+    build:
+      context: ./microservicos/curso-service
+    container_name: curso-service
+    ports:
+      - "8083:8083"
+    networks:
+      - app-network
+
+  # Microserviço de Disciplinas (8084)
+  disciplina-service:
+    build:
+      context: ./microservicos/disciplina-service
+    container_name: disciplina-service
+    ports:
+      - "8084:8084"
+    networks:
+      - app-network
+
+  # Microserviço de Professores (8085)
+  professor-service:
+    build:
+      context: ./microservicos/professor-service
+    container_name: professor-service
+    ports:
+      - "8085:8085"
+    networks:
+      - app-network
+
+  # Microserviço de Turmas (8086)
+  turma-service:
+    build:
+      context: ./microservicos/turma-service
+    container_name: turma-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - curso-service
+      - professor-service
+    networks:
+      - app-network
+
+  # Microserviço de Matrículas (8081)
+  matricula-service:
+    build:
+      context: ./microservicos/matricula-service
+    container_name: matricula-service
+    ports:
+      - "8081:8081"
+    environment:
+      - PESSOA_SERVICE_URL=http://pessoa-service:8082
+      - CURSO_SERVICE_URL=http://curso-service:8083
+    depends_on:
+      - pessoa-service
+      - curso-service
+    networks:
+      - app-network
 
 networks:
-  microservices-network:
+  app-network:
     driver: bridge

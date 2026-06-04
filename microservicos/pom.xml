@@ -15,10 +15,11 @@
     <modules>
         <module>matricula-service</module>
         <module>pessoa-service</module>
-        <module>usuario-service</module>
+        <module>professor-service</module>
         <module>disciplina-service</module>
         <module>turma-service</module>
         <module>curso-service</module>
+        <module>professor-service</module>
     </modules>
 
 </project>
